@@ -1,0 +1,6 @@
+{
+  "name": "BoardPage",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./BoardPage.js"
+}
