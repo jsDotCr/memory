@@ -2,7 +2,7 @@
 
 import { join } from 'path';
 import { Router } from 'express';
-import jade from 'jade';
+import handlebars from 'handlebars';
 import fm from 'front-matter';
 import fs from '../utils/fs';
 
@@ -10,9 +10,9 @@ import fs from '../utils/fs';
 const CONTENT_DIR = join(__dirname, './content');
 
 // Extract 'front matter' metadata and generate HTML
-const parseJade = (path, jadeContent) => {
-  const fmContent = fm(jadeContent);
-  const htmlContent = jade.render(fmContent.body);
+const parseTemplate = (path, templateContent) => {
+  const fmContent = fm(templateContent);
+  const htmlContent = handlebars.compile(fmContent.body)({ hi: 'there'});
   return Object.assign({ path, content: htmlContent }, fmContent.attributes);
 };
 
@@ -27,16 +27,16 @@ router.get('/', async (req, res, next) => {
       return;
     }
 
-    let fileName = join(CONTENT_DIR, (path === '/' ? '/index' : path) + '.jade');
+    let fileName = join(CONTENT_DIR, (path === '/' ? '/index' : path) + '.hb');
     if (!await fs.exists(fileName)) {
-      fileName = join(CONTENT_DIR, path + '/index.jade');
+      fileName = join(CONTENT_DIR, path + '/index.hb');
     }
 
     if (!await fs.exists(fileName)) {
       res.status(404).send({error: `The page '${path}' is not found.`});
     } else {
       const source = await fs.readFile(fileName, { encoding: 'utf8' });
-      const content = parseJade(path, source);
+      const content = parseTemplate(path, source);
       res.status(200).send(content);
     }
   } catch (err) {
