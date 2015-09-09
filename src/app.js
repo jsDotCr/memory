@@ -3,6 +3,7 @@
 import 'babel/polyfill';
 import ReactDOM from 'react-dom';
 import FastClick from 'fastclick';
+import './utils/OverrideBackboneAjax';
 import Dispatcher from './core/Dispatcher';
 import Router from './Router';
 import Location from './core/Location';
