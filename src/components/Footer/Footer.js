@@ -18,23 +18,15 @@ class Footer {
   };
 
   render() {
-    // This is just an example how one can render CSS
     let { width, height } = this.props.viewport;
-    this.renderCss(`.Footer-viewport:after {content:' ${width}x${height}';}`);
 
     return (
-      <div className="Footer">
-        <div className="Footer-container">
-          <span className="Footer-text">© Your Company</span>
-          <span className="Footer-spacer">·</span>
-          <a className="Footer-link" href="/" onClick={Link.handleClick}>Home</a>
-          <span className="Footer-spacer">·</span>
-          <a className="Footer-link" href="/privacy" onClick={Link.handleClick}>Privacy</a>
-          <span className="Footer-spacer">·</span>
-          <a className="Footer-link" href="/not-found" onClick={Link.handleClick}>Not Found</a>
-          <span className="Footer-spacer"> | </span>
-          <span ref="viewport" className="Footer-viewport Footer-text Footer-text--muted">Viewport:</span>
-        </div>
+      <div className="footer">
+          <span className="footer__text">DWTFYWPL</span>
+          <span className="footer__spacer">·</span>
+          <a className="footer__link" href="/setup" onClick={Link.handleClick}>Setup stage</a>
+          <span className="footer__spacer"> | </span>
+          <span ref="viewport" className="footer__viewport footer__text footer__text--muted">Viewport: {width}x{height}</span>
       </div>
     );
   }
