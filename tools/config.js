@@ -58,7 +58,8 @@ const config = {
   },
 
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin()
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.IgnorePlugin(/^jquery$/)
   ],
 
   resolve: {
@@ -85,6 +86,9 @@ const config = {
     }, {
       test: /\.(eot|tft|wav|mp3)$/,
       loader: 'file-loader'
+    }, {
+      test: /backbone\.js$/,
+      loader: 'imports?define=>false'
     }]
   },
 
