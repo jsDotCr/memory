@@ -3,11 +3,11 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Rocco -- A guy -- @jsdotcr
 
 # THANKS
 
-    <name>
+    Berliner Pilsner
 
 # TECHNOLOGY COLOPHON
 
